@@ -67,11 +67,18 @@ tasks:
   terraform:destroy:
     desc: |
       Run terraform destroy
-      Usage: task terraform:destroy -- [terraform-destroy-options]
+      Usage: CONFIRM_TERRAFORM_DESTROY=true task terraform:destroy -- [terraform-destroy-options]
+      Safety: requires CONFIRM_TERRAFORM_DESTROY=true to reduce the risk of accidental destructive runs.
     deps:
       - pre-check
     cmds:
-      - terraform destroy -var-file=terraform.tfvars {{.CLI_ARGS}}
+      - |
+        test "${CONFIRM_TERRAFORM_DESTROY}" = "true" || {
+          echo "Refusing to run terraform destroy without explicit confirmation."
+          echo "Re-run with CONFIRM_TERRAFORM_DESTROY=true task terraform:destroy -- [terraform-destroy-options]"
+          exit 1
+        }
+        terraform destroy -var-file=terraform.tfvars {{.CLI_ARGS}}
 
   terraform:lint:
     desc: |
