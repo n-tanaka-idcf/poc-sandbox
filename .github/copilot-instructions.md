@@ -3,7 +3,7 @@
 ## 1. Repository Context (リポジトリの前提条件)
 - **Purpose**: このリポジトリは本番環境（Production）およびそれに準ずる検証環境のインフラ構築コード（Infrastructure as Code）を管理するためのものです。
 - **Environment**: 高可用性、スケーラビリティ、および耐障害性が求められる**本番環境**です。ダウンタイムやデータ喪失に繋がる破壊的な変更は原則として許容されません。
-- **Tech Stack**: Terragrunt, Terraform, Ansible, Kubernetes (K8s) manifests.
+- **Tech Stack**: Terragrunt, Terraform, Ansible, Kubernetes (K8s) manifests
 
 ## 2. Core Mindset (基本方針)
 - **Reliability & Maintainability over Speed**: スピードよりも、システムの信頼性、セキュリティ、および長期的な保守性を最優先してコードを提案してください。
