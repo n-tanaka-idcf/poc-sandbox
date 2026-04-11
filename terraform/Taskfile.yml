@@ -23,8 +23,19 @@ tasks:
     desc: Check the prerequisites
     cmds:
       - |
-        test -n "$TF_VAR_api_key"
-        test -n "$TF_VAR_secret_key"
+        missing_vars=0
+
+        for required_var in TF_VAR_api_key TF_VAR_secret_key; do
+          if [ -z "$(printenv "$required_var")" ]; then
+            echo "ERROR: Required environment variable '$required_var' is not set."
+            echo "Set it before running Terraform tasks. You can use .envrc_common_secrets.example as a template for the required secrets."
+            missing_vars=1
+          fi
+        done
+
+        if [ "$missing_vars" -ne 0 ]; then
+          exit 1
+        fi
 
   terraform:init:
     desc: |
