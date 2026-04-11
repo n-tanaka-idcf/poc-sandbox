@@ -8,6 +8,8 @@ on:
     paths:
       - .github/workflows/run_devcontainer_ci.yaml
       - .devcontainer/**
+      - compose-infra.yml
+      - terraform/**
 
 defaults:
   run:
