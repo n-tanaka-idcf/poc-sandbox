@@ -25,7 +25,7 @@
 - エラーハンドリング（`failed_when`など）を適切に行い、予期せぬ状態でのサイレントな進行を防いでください。
 
 ### Kubernetes Manifests
-- 可用性を担保するため、Deployment等では複数レプリカ（`replicas > 1`）、PodAntiAffinity、およびPodDisruptionBudget (PDB) の設定を基本として提案してください。
+- 可用性を担保するため、Deployment等では複数レプリカ（`replicas は 2 以上`）、PodAntiAffinity、およびPodDisruptionBudget (PDB) の設定を基本として提案してください。
 - リソース割り当て（`resources: requests` / `limits`）は、本番の負荷を想定した具体的な値（または変数のプレースホルダー）を必ず設定し、OOMKilledやCPUスロットリングを防ぐ設計にしてください。
 - ヘルスチェック（`livenessProbe`, `readinessProbe`）を必ず実装してください。
 
