@@ -16,7 +16,7 @@
 ### Terragrunt & Terraform
 - 常に**非破壊的（Non-Destructive）**な変更を前提とし、ステートフルなリソース（DB、ストレージなど）には必ず `lifecycle { prevent_destroy = true }` を付与する提案を含めてください。
 - リソースの命名規則は組織の規約に従い、一貫性を保ってください。
-- ファイル分割（`main.tf`, `variables.tf`, `outputs.tf`）を徹底し、入力・出力のインターフェースを型指定（`type`）やバリデーション（`validation`ブロック）を用いて厳格に定義してください。
+- ファイル分割（`main.tf`, `variables.tf`, `outputs.tf`）を徹底し、入力（`variable`）は型指定（`type`）やバリデーション（`validation` ブロック）で厳格に定義してください。出力（`output`）は `description` や `sensitive` を適切に設定し、必要に応じて `precondition` などで意図を明確にしてください。
 - IAMやセキュリティグループの設定を提案する際は、常に**「最小権限の原則（Principle of Least Privilege）」**に従ってください。
 
 ### Ansible
