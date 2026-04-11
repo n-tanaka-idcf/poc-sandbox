@@ -1,5 +1,12 @@
 # Secrets
-source .envrc_common_secrets
+# Fail with a clear setup message when local secrets have not been bootstrapped yet,
+# instead of surfacing a generic "file not found" from `source`.
+if [ -f .envrc_common_secrets ]; then
+  source .envrc_common_secrets
+else
+  echo "Missing .envrc_common_secrets. Copy .envrc_common_secrets.example to .envrc_common_secrets and populate the required secret values." >&2
+  return 1
+fi
 
 # Starship
 eval "$(starship init bash)"
