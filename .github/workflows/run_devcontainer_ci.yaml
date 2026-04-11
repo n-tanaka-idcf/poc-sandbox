@@ -9,7 +9,12 @@ on:
       - .github/workflows/run_devcontainer_ci.yaml
       - .devcontainer/**
       - compose-infra.yml
-      - terraform/**
+      - terraform/.envrc_common
+      - terraform/aqua.yaml
+      - terraform/Dockerfile
+      - terraform/postCreateCommand.sh
+      - terraform/starship.toml
+      - terraform/Taskfile.yml
 
 defaults:
   run:
