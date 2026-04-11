@@ -30,4 +30,5 @@
 
 ## 4. Security & Safety (セキュリティと安全性)
 - パスワード、シークレットキー、APIトークンなどのクレデンシャル情報を**絶対にハードコードしないでください**。
-- 代わりに、環境変数（例: `var.db_password`）やプレースホルダー（例: `<YOUR_SECRET_HERE>`）を使用するよう提案してください。
+- 代わりに、適切な変数参照やシークレット管理を使用するよう提案してください。例: Terraform変数（`var.db_password`）、Terraform用の環境変数（`TF_VAR_db_password`）、プレースホルダー（例: `<YOUR_SECRET_HERE>`）。
+- 技術ごとの推奨手段も明確にしてください。Terraformでは `*.tfvars` や Secret Manager 等、Ansibleでは Ansible Vault、Kubernetesでは Secret リソースを優先してください。
