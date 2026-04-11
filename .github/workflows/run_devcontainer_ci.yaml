@@ -42,11 +42,11 @@ jobs:
       - name: Check Dockerfile
         uses: hadolint/hadolint-action@v3.1.0
         with:
-          dockerfile: .devcontainer/${{ matrix.devcontainer }}/Dockerfile
+          dockerfile: ${{ matrix.devcontainer }}/Dockerfile
 
       - name: Create .env file
         run: |
-          cat <<EOF > .devcontainer/.env
+          cat <<EOF > .env
           UID=$(id -u)
           GID=$(id -g)
           EOF
@@ -57,5 +57,5 @@ jobs:
           configFile: .devcontainer/${{ matrix.devcontainer }}/devcontainer.json
           push: never
           runCmd: |
-            cd /workspace/infra/${{ matrix.devcontainer }}
+            cd /workspace/${{ matrix.devcontainer }}
             task environment:check

@@ -1,7 +1,7 @@
 {
     "name": "terraform",
     "dockerComposeFile": [
-        "../compose.yml"
+        "../../compose-infra.yml"
     ],
     "service": "terraform",
     "runServices": [
@@ -16,7 +16,7 @@
     },
     "remoteEnv": {
         "PATH": "/home/${containerEnv:DEVCONTAINER_USER}/.local/bin:/home/${containerEnv:DEVCONTAINER_USER}/.local/share/aquaproj-aqua/bin:${containerEnv:PATH}",
-        "AQUA_CONFIG": "${containerWorkspaceFolder}/.devcontainer/${containerEnv:DEVCONTAINER_NAME}/aqua.yaml"
+        "AQUA_CONFIG": "${containerWorkspaceFolder}/${containerEnv:DEVCONTAINER_NAME}/aqua.yaml"
     },
     "remoteUser": "vscode",
     "workspaceFolder": "/workspace",
@@ -28,7 +28,7 @@
             "aqua_version": "v2.51.2"
         }
     },
-    "postCreateCommand": "bash -c './.devcontainer/$DEVCONTAINER_NAME/postCreateCommand.sh'",
+    "postCreateCommand": "bash -c './$DEVCONTAINER_NAME/postCreateCommand.sh'",
     "customizations": {
         "vscode": {
             "settings": {
