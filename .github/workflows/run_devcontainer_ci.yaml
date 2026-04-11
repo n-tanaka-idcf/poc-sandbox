@@ -4,7 +4,7 @@ name: run_devcontainer_ci
 on:
   push:
     branches:
-      - "*"
+      - "**"
     paths:
       - .github/workflows/run_devcontainer_ci.yaml
       - .devcontainer/**
