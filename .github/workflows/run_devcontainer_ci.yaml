@@ -44,7 +44,7 @@ jobs:
     timeout-minutes: 60
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Show workflow run-time information
         run: |
@@ -55,7 +55,7 @@ jobs:
           echo Building devcontainer for ${{ matrix.devcontainer }}
 
       - name: Check Dockerfile
-        uses: hadolint/hadolint-action@v3.1.0
+        uses: hadolint/hadolint-action@v3.3.0
         with:
           dockerfile: ${{ matrix.devcontainer }}/Dockerfile
 
