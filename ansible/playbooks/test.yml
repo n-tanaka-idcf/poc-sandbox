@@ -1,0 +1,13 @@
+---
+- name: Test playbook
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Hello World
+      ansible.builtin.command: echo "Hello, World!"
+      register: _hello_world_output
+      changed_when: false
+
+    - name: Print Hello World output
+      ansible.builtin.debug:
+        msg: "{{ _hello_world_output.stdout }}"
