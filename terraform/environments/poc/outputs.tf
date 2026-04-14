@@ -1,3 +1,3 @@
-output "access_ip_address" {
+output "access_ip_addresses" {
   value = module.compute.ip_addresses
 }
