@@ -17,6 +17,14 @@
         "files.exclude": {
             "ansible": true,
             "terraform": true
+        },
+        "search.exclude": {
+            "ansible": true,
+            "terraform": true
+        },
+        "files.watcherExclude": {
+            "ansible": true,
+            "terraform": true
         }
     }
 }
