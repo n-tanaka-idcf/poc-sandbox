@@ -17,11 +17,13 @@ on:
       - terraform/Taskfile.yml
       - ansible/.envrc_common
       - ansible/.python-version
+      - ansible/ansible.cfg
       - ansible/aqua.yaml
       - ansible/Dockerfile
       - ansible/postCreateCommand.sh
       - ansible/pyproject.toml
       - ansible/Taskfile.yml
+      - ansible/uv.lock
 
 defaults:
   run:
