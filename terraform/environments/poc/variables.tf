@@ -3,11 +3,13 @@ variable "api_url" {
 }
 
 variable "api_key" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "secret_key" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "network_id" {
