@@ -1,0 +1,23 @@
+---
+- name: Create OS management user groups
+  ansible.builtin.group:
+    name: "{{ group }}"
+    state: present
+  loop: "{{ common_os_management_user.groups }}"
+  loop_control:
+    loop_var: group
+
+- name: Create OS management user
+  ansible.builtin.user:
+    name: "{{ common_os_management_user.name }}"
+    groups: "{{ common_os_management_user.groups }}"
+    password: "{{ common_os_management_user.password | password_hash('sha512', common_os_management_user.salt) }}"
+    append: true
+    state: present
+
+- name: Add public keys to OS management user authorized_keys
+  ansible.posix.authorized_key:
+    user: "{{ common_os_management_user.name }}"
+    key: "{{ common_os_management_user.public_keys }}"
+    exclusive: true
+    state: present

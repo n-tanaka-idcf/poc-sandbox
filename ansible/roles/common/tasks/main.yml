@@ -1,0 +1,21 @@
+---
+- name: Setup OS packages
+  ansible.builtin.import_tasks: os_packages.yml
+  tags: common_os_packages
+
+- name: Setup OS management user
+  ansible.builtin.import_tasks: os_management_user.yml
+  tags: common_os_management_user
+
+- name: Setup root disk
+  ansible.builtin.import_tasks: root_disk.yml
+  tags: common_root_disk
+
+# - name: Setup the data disk
+#   ansible.builtin.import_tasks: setup/data_disk.yml
+#   when: common_data_disks is defined
+#   tags: setup_common_data_disk
+
+- name: Setup misc commands
+  ansible.builtin.import_tasks: misc_commands.yml
+  tags: common_misc_commands

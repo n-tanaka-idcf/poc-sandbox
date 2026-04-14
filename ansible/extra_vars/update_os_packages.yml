@@ -1,0 +1,3 @@
+---
+common_os_packages:
+  updates: true

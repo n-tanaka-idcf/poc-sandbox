@@ -1,0 +1,44 @@
+---
+- name: Ensure required OS packages are installed
+  ansible.builtin.dnf:
+    name: "{{ package }}"
+    state: present
+  loop:
+    - cloud-utils-growpart-0.33-1.el9
+  loop_control:
+    loop_var: package
+
+- name: Get root disk and partition size info
+  ansible.builtin.command: lsblk -b -n -o NAME,SIZE {{ common_root_disk.device }}
+  register: common_lsblk_output
+  changed_when: false
+  check_mode: false
+
+- name: Parse root disk and partition sizes
+  ansible.builtin.set_fact:
+    common_disk_size: "{{ common_lsblk_output.stdout_lines[0].split()[1] }}"
+    common_partition_size: "{{ common_lsblk_output.stdout_lines[1].split()[1] }}"
+
+- name: Set diff size
+  ansible.builtin.set_fact:
+    common_diff_size: "{{ common_disk_size | int - common_partition_size | int }}"
+
+- name: Check if root disk partition extention is required (1GB threshold)
+  ansible.builtin.set_fact:
+    common_extention_required: "{{ common_diff_size | int > 1073741824 }}"
+
+- name: Ensure the root disk partition is extended
+  ansible.builtin.command:
+    cmd: growpart {{ common_root_disk.device }} {{ common_root_disk.partition }}
+  register: common_growpart_result
+  when: common_extention_required
+  changed_when: "'CHANGED:' in common_growpart_result.stdout"
+  failed_when: "'FAILED:' in common_growpart_result.stdout"
+
+- name: Ensure the root disk filesystem is extended
+  community.general.filesystem:
+    dev: "{{ common_root_disk.device }}{{ common_root_disk.partition }}"
+    fstype: xfs
+    resizefs: true
+    state: present
+  when: common_extention_required

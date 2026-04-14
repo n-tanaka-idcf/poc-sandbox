@@ -1,0 +1,6 @@
+---
+- name: Deploy misc servers
+  import_playbook: misc.yml
+
+- name: Deploy vds network servers
+  import_playbook: vds-network.yml

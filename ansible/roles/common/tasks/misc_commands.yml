@@ -1,0 +1,13 @@
+---
+- name: Enable the EPEL repository
+  ansible.builtin.dnf:
+    name: epel-release
+    state: present
+
+- name: Install misc command packages
+  ansible.builtin.dnf:
+    name: "{{ package }}"
+    state: present
+  loop: "{{ common_misc_command_packages }}"
+  loop_control:
+    loop_var: package
