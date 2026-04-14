@@ -60,7 +60,9 @@
                 "ansible.lightspeed.enabled": false,
                 "ansibleVault.executable": "/app/.venv/bin/ansible-vault",
                 // Redhat
-                "redhat.telemetry.enabled": false
+                "redhat.telemetry.enabled": false,
+                // Workspace
+                "autoOpenWorkspace.enableAutoOpenAlwaysFirst": true
             },
             "extensions": [
                 // Ansible
@@ -75,7 +77,9 @@
                 // Jinja
                 "samuelcolvin.jinjahtml",
                 // Toml
-                "tamasfe.even-better-toml"
+                "tamasfe.even-better-toml",
+                // Workspace
+                "zoma.vscode-auto-open-workspace"
             ]
         }
     }

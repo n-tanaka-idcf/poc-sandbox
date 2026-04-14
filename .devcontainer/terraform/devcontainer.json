@@ -40,7 +40,9 @@
                 "files.trimTrailingWhitespace": true,
                 "files.associations": {
                     ".envrc*": "shellscript"
-                }
+                },
+                // Workspace
+                "autoOpenWorkspace.enableAutoOpenAlwaysFirst": true
             },
             "extensions": [
                 // Docker
@@ -49,7 +51,9 @@
                 // Github Actions
                 "github.vscode-github-actions",
                 // Terraform
-                "hashicorp.terraform"
+                "hashicorp.terraform",
+                // Workspace
+                "zoma.vscode-auto-open-workspace"
             ]
         }
     }

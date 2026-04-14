@@ -1,0 +1,22 @@
+{
+    "folders": [
+        {
+            "name": "project_root",
+            "path": "."
+        },
+        {
+            "name": "ansible",
+            "path": "./ansible"
+        },
+        {
+            "name": "terraform",
+            "path": "./terraform"
+        }
+    ],
+    "settings": {
+        "files.exclude": {
+            "ansible": true,
+            "terraform": true
+        }
+    }
+}
