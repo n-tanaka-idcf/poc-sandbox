@@ -15,6 +15,13 @@ on:
       - terraform/postCreateCommand.sh
       - terraform/starship.toml
       - terraform/Taskfile.yml
+      - ansible/.envrc_common
+      - ansible/.python-version
+      - ansible/aqua.yaml
+      - ansible/Dockerfile
+      - ansible/postCreateCommand.sh
+      - ansible/pyproject.toml
+      - ansible/Taskfile.yml
 
 defaults:
   run:
@@ -29,6 +36,7 @@ jobs:
     strategy:
       matrix:
         devcontainer:
+          - ansible
           - terraform
 
     name: Build Devcontainer for ${{ matrix.devcontainer }}
@@ -65,4 +73,5 @@ jobs:
           push: never
           runCmd: |
             cd /workspace/${{ matrix.devcontainer }}
+            . .envrc_common
             task environment:check
