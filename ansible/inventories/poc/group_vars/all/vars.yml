@@ -6,9 +6,11 @@ common_os_management_user:
     - wheel
   password: "{{ vault_common_os_management_user_password }}"
   salt: "{{ vault_common_os_management_user_salt }}"
+  # yamllint disable rule:line-length
   public_keys: |
     # n.tanaka@idcf.jp
     ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEArOZdgY2DrtPs0aRfISe1wbe09/71K0vfEBasHpqnZOXCtjxrToSCwTqwrxEzmsPrEWETsfOg31q+dstM6SkBThNbctVbqHTOQntqdND/6LLv0U+UdpPBfcZ/0d68I6cL0/ilxKtd5cQFFDDQq0gsbDNRhhOnJZDubvAAISY35KfXyhmC0m6xh6A76Iwf3c5by8bm9i2qNuE6BncDttXAdx12a0rYJ8pZUzB37GWQdlFnn7uRMEqCmVfDK09jrCC1l2cD7Ld47mdZc2mzAHRi5QmJtYOBalkaTwfjkEI4xL5/3+VHIXaUcLOSBEr+TDOqdToysFoLU8e7CXVrd4vaLQNJ30iXEysPUlOEQ3R7wBJ7gICkqwJRJRhoAFDyG5lAWUDuxHBi1G+QbAB+GPpkf/GrwqdmLsgnT811/rxZzd3y9kvD3KU/I7S2NEKeRyKoXm/AEDS19S0NbgYwTRzrX6bXFGFxQVpNz54QsM6p/usyNKk0mN/7YAePq9LngOlZe5X0TOPbWEiE4Ixz2soF1CMZibvDwnLF2Cf163g8gLL4ofWtMMpejL4u+qItGvF23zJqbFMd+hYsmPi5SVMXciIa8/hNDC7MBzIiDRDtiWTCVOvlswn+GXJ7dr+H2lvfh3YSBqs69J97+16JXd31X2rQTYyTf2KOeflJ6gMAxfM= n.tanaka@idcf.jp 9c:4f:a7:6d:52:a7:ad:cb:38:0a:c9:2c:6c:0c:ac:28
+  # yamllint enable rule:line-length
 
 common_os_packages:
   updates: false
