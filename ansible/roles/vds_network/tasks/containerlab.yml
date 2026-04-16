@@ -1,0 +1,39 @@
+---
+- name: Debug
+  ansible.builtin.debug:
+    msg: "This is a debug message for containerlab tasks"
+
+- name: Check if Containerlab binary exists
+  ansible.builtin.stat:
+    path: /usr/bin/containerlab
+  register: vds_network_containerlab_check
+
+- name: Download the Containerlab setup script
+  ansible.builtin.get_url:
+    url: https://containerlab.dev/setup
+    dest: /tmp/containerlab_setup.sh
+    mode: "0755"
+    # 毎回最新のスクリプトをダウンロードしたい場合はforce: yesをつけます
+    force: true
+  # /usr/bin/containerlab が存在しない場合のみ実行
+  when: not vds_network_containerlab_check.stat.exists
+
+- name: Execute the setup script with "all" argument
+  # ダウンロードしたスクリプトに引数 "all" を渡して実行します
+  ansible.builtin.command:
+    cmd: bash /tmp/containerlab_setup.sh all
+    # すでにインストール済みの場合は実行をスキップ（二重の安全策）
+    creates: /usr/bin/containerlab
+  # /usr/bin/containerlab が存在しない場合のみ実行
+  when: not vds_network_containerlab_check.stat.exists
+  environment:
+    # 接続に使用しているユーザー名（ec2-userやubuntuなど）をセットします
+    SUDO_USER: "{{ containerlab_user }}"
+    USER: "{{ containerlab_user }}"
+
+- name: Clean up the setup script (Optional)
+  ansible.builtin.file:
+    path: /tmp/containerlab_setup.sh
+    state: absent
+  # スクリプトをダウンロードした場合のみ削除
+  when: not vds_network_containerlab_check.stat.exists

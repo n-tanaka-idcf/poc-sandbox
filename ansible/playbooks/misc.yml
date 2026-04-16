@@ -5,3 +5,6 @@
   roles:
     - role: common
       tags: common
+
+    - role: vds_network
+      tags: vds_network

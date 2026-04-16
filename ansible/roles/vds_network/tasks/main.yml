@@ -1,0 +1,4 @@
+---
+- name: Setup containerlab
+  ansible.builtin.import_tasks: containerlab.yml
+  tags: vds_network_containerlab

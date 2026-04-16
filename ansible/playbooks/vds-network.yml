@@ -1,10 +1,10 @@
 ---
 - name: Deploy network servers
-  hosts: network
+  hosts: vds_network
   become: true
   roles:
     - role: common
       tags: common
 
-    - role: docker
-      tags: docker
+    - role: vds_network
+      tags: vds_network
