@@ -40,7 +40,9 @@ firewall_rules = {
   },
   "sandbox-vds-network-01" = {
     cidr_list = [
-      "202.230.240.74/32" # Teana
+      "202.230.223.225/32", # Netskope
+      "210.140.186.241/32", # Netskope
+      "202.230.240.74/32"   # Teana
     ]
     protocol = "tcp"
     ports    = [22, 443]
